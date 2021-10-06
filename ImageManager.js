@@ -14,10 +14,8 @@ Array.prototype.shuffle = function() {
 var ImageManager = function()
 	{
 		let Q = Qualtrics.SurveyEngine;
-	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');
-		let hasRun = (orderedImageList.length > 1);
-
-		function makeImageList()
+	    let hasRun = false;
+		function makeAndSaveImageList()
 		  {
 		  	let conditions = ['O', 'M', 'Y', 'OD', 'MD', 'YD'];
 		  	let imgList = [];
@@ -36,27 +34,15 @@ var ImageManager = function()
 		  		imgList.push("WW" + faceId + cond + ".jpg" );
 		  	}
 		  	imgList.shuffle();
-		  	orderedImageList = imgList;
-
-		  	
-
-		  }
-		function saveState()
-		{
-			if (hasRun) 
-			{ 
-				return; 
-			}
-			Q.setEmbeddedData("IMG_LIST", orderedImageList.join(','));
-			let imgNum = 1;
-			for (const item of orderedImageList)
+		  	let imgNum = 1;
+			for (const item of imgList)
 			{
-					console.log("saving IMG_" + imgNum);
+					console.log("saving IMG_" + imgNum + ": " + item);
 					Q.setEmbeddedData("IMG_" + imgNum++, item);
 					
 			}
-		}
-		
+			hasRun = true;
+		  }
 		  
 		return {
 			init:function()
@@ -65,8 +51,7 @@ var ImageManager = function()
 				{
 					return;
 				}
-				makeImageList();
-				saveState();
+				makeAndSaveImageList();
 			},
 		  	
 			getImageUrlByNumber:function(imgNumber)
@@ -75,7 +60,7 @@ var ImageManager = function()
 				{
 					this.init();
 				}
-				return "${e://Field/BASE_URL}" + Q.getEmbeddedData("IMG_" + imgNumber);
+				return Q.getEmbeddedData("BASE_URL") + Q.getEmbeddedData("IMG_" + imgNumber);
 			}
 		  }
 	};

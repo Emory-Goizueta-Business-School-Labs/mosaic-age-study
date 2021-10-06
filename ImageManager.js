@@ -10,7 +10,7 @@ Array.prototype.shuffle = function() {
   }
   return this;
 };
-Q = Qualtrics.SurveyEngine;
+var Q = Qualtrics.SurveyEngine;
 var initializeImages = function()
 	{
 		let hasRun = (parseInt(Q.getEmbeddedData("JS_HAS_RUN")) != 0);

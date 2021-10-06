@@ -1,5 +1,3 @@
-<script>
-
 Array.prototype.shuffle = function() {
 // Fisher/Yates shuffle alg for picking random
   var i, j, tmp;
@@ -93,5 +91,3 @@ function getImageUrlByNumber(number)
 	let IM = new ImageManager();
 	return IM.getImageUrlByNumber(number);
 }
-
-</script>

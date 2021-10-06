@@ -11,7 +11,7 @@ Array.prototype.shuffle = function() {
   return this;
 };
 
-var ImageManager = function(qtrx)
+var ImageManager = function()
 	{
 		let Q = Qualtrics.SurveyEngine;
 	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');

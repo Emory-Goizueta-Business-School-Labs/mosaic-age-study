@@ -61,7 +61,8 @@ var ImageManager = function()
 				{
 					this.init();
 				}
-				return "${e://Field/BASE_URL}" + Q.getEmbeddedData("IMG_" + imgNumber);
+				
+				return Q.getEmbeddedData("BASE_URL") + Q.getEmbeddedData("IMG_" + imgNumber);
 			}
 		  }
 	};

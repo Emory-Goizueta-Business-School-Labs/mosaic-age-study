@@ -14,7 +14,7 @@ Array.prototype.shuffle = function() {
 var ImageManager = function(qtrx)
 	{
 		let Q = qtrx;		  
-	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');
+	    let orderedImageList = "${e://Field/IMG_LIST}".split(',');
 		let hasRun = (orderedImageList.length > 1);
 
 		function makeImageList()

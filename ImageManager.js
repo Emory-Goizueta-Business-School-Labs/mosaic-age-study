@@ -11,12 +11,9 @@ Array.prototype.shuffle = function() {
   return this;
 };
 
-
-
-var ImageManager = function()
+var ImageManager = function(qtrx)
 	{
-		let Q = Qualtrics.SurveyEngine;	
-		console.log(Q);
+		let Q = qtrx;		  
 	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');
 		let hasRun = (orderedImageList.length > 1);
 
@@ -83,11 +80,11 @@ var ImageManager = function()
 		  }
 	};
 
-function initializeImages(){
+function initializeImages(qtrx){
 	let IM = new ImageManager();
 	IM.init();
 }
-function getImageUrlByNumber(number)
+function getImageUrlByNumber(qtrx, number)
 {
 	let IM = new ImageManager();
 	return IM.getImageUrlByNumber(number);

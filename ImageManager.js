@@ -14,7 +14,7 @@ Array.prototype.shuffle = function() {
 var ImageManager = function()
 	{
 		let Q = Qualtrics.SurveyEngine;
-	    let hasRun = (paresInt(Q.getEmbeddedData("JS_HAS_RUN")) != 0);
+	    let hasRun = (parseInt(Q.getEmbeddedData("JS_HAS_RUN")) != 0);
 		function makeAndSaveImageList()
 		  {
 		  	let conditions = ['O', 'M', 'Y', 'OD', 'MD', 'YD'];

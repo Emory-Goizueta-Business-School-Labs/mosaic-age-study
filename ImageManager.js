@@ -10,11 +10,20 @@ Array.prototype.shuffle = function() {
   }
   return this;
 };
-
-var ImageManager = function()
+Q = Qualtrics.SurveyEngine;
+var initializeImages = function()
 	{
-		let Q = Qualtrics.SurveyEngine;
-	    let hasRun = (parseInt(Q.getEmbeddedData("JS_HAS_RUN")) != 0);
+		let hasRun = (parseInt(Q.getEmbeddedData("JS_HAS_RUN")) != 0);
+		if (hasRun)
+		{
+			return hasRun;
+		}
+		else
+		{
+			makeAndSaveImageList();
+			return hasRun;
+		}
+		
 		function makeAndSaveImageList()
 		  {
 		  	let conditions = ['O', 'M', 'Y', 'OD', 'MD', 'YD'];
@@ -44,35 +53,9 @@ var ImageManager = function()
 			hasRun = true;
 			Q.setEmbeddedData("JS_HAS_RUN", 1);
 		  }
-		  
-		return {
-			init:function()
-			{
-				if (hasRun)
-				{
-					return;
-				}
-				makeAndSaveImageList();
-			},
-		  	
-			getImageUrlByNumber:function(imgNumber)
-			{
-				if (! hasRun)
-				{
-					this.init();
-				}
-				
-				return Q.getEmbeddedData("BASE_URL") + Q.getEmbeddedData("IMG_" + imgNumber);
-			}
-		  }
 	};
 
-function initializeImages(){
-	let IM = new ImageManager();
-	IM.init();
-}
-function getImageUrlByNumber(number)
+function getImageUrlByNumber(imgNumber)
 {
-	let IM = new ImageManager();
-	return IM.getImageUrlByNumber(number);
+	return Q.getEmbeddedData("BASE_URL") + Q.getEmbeddedData("IMG_" + imgNumber);
 }

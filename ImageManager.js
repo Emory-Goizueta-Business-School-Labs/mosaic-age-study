@@ -15,7 +15,8 @@ Array.prototype.shuffle = function() {
 
 var ImageManager = function()
 	{
-		let Q = Qualtrics.SurveyEngine;		  
+		let Q = Qualtrics.SurveyEngine;	
+		console.log(Q);
 	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');
 		let hasRun = (orderedImageList.length > 1);
 

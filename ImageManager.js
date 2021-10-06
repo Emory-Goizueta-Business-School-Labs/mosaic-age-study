@@ -13,8 +13,8 @@ Array.prototype.shuffle = function() {
 
 var ImageManager = function(qtrx)
 	{
-		let Q = qtrx;		  
-	    let orderedImageList = "${e://Field/IMG_LIST}".split(',');
+		let Q = Qualtrics.SurveyEngine;
+	    let orderedImageList = Q.getEmbeddedData("IMG_LIST").split(',');
 		let hasRun = (orderedImageList.length > 1);
 
 		function makeImageList()
@@ -80,11 +80,11 @@ var ImageManager = function(qtrx)
 		  }
 	};
 
-function initializeImages(qtrx){
+function initializeImages(){
 	let IM = new ImageManager();
 	IM.init();
 }
-function getImageUrlByNumber(qtrx, number)
+function getImageUrlByNumber(number)
 {
 	let IM = new ImageManager();
 	return IM.getImageUrlByNumber(number);
